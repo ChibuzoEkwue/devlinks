@@ -1,0 +1,114 @@
+"use client";
+import LinkCard from "@/components/LinkCard";
+import Image from "next/image";
+import { useContext } from "react";
+import { LinksContext } from "@/store/StoreContext";
+import LinkBioCard from "@/components/LinkBioCard";
+
+const DashboardPage = () => {
+  const { addLink, links, removeLink } = useContext(LinksContext);
+  console.log(links);
+  
+
+  const addNewLinkHandler = () => {
+    addLink();
+  };
+
+  const removeNewLinkHandler = (id: number) => {
+    removeLink(id);
+  };
+
+  return (
+    <div className="mt-4 flex h-max w-full gap-4">
+      {/* PHONE */}
+      <div
+        style={{ flex: 2 }}
+        className="hidden h-[650px] w-[300px] items-center justify-center gap-2 rounded-xl bg-white p-6 lg:flex lg:flex-col"
+      >
+        <div className="h-[631px] w-[307px]">
+          <div className="inline-flex h-[514px] w-[237px] flex-col items-start justify-start gap-14">
+            <div className="flex h-[158px] flex-col items-center justify-start gap-[25px] self-stretch">
+              <div className="h-24 w-24 rounded-full bg-[#eeeeee]" />
+              <div className="flex flex-col items-center justify-start gap-[13px]">
+                <div className="h-4 w-40 rounded-[104px] bg-[#eeeeee]" />
+                <div className="h-2 w-[72px] rounded-[104px] bg-[#eeeeee]" />
+              </div>
+            </div>
+            <div className="flex h-[300px] flex-col items-start justify-start gap-5 self-stretch">
+              {links.length < 1 && (
+                <>
+                  <div className="h-11 self-stretch rounded-lg bg-[#eeeeee]" />
+                  <div className="h-11 self-stretch rounded-lg bg-[#eeeeee]" />
+                  <div className="h-11 self-stretch rounded-lg bg-[#eeeeee]" />
+                  <div className="h-11 self-stretch rounded-lg bg-[#eeeeee]" />
+                  <div className="h-11 self-stretch rounded-lg bg-[#eeeeee]" />
+                </>
+              )}
+              {links.map((link, index) => (
+                <LinkBioCard key={index} platform={link.platform} />
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+      {/* MENU */}
+      <div
+        style={{ flex: 3 }}
+        className="flex w-full flex-col items-start justify-start gap-10 rounded-sm bg-white p-6 md:mx-auto md:h-full md:w-[680px]"
+      >
+        <div className="flex h-[92px] flex-col items-start justify-start gap-2">
+          <div className="font-['Instrument Sans'] text-2xl font-bold leading-9 text-[#333333]">
+            Customize your links
+          </div>
+          <div className="font-['Instrument Sans'] text-base font-normal leading-normal text-[#727272]">
+            Add/edit/remove links below and then share all your profiles with
+            the world!
+          </div>
+        </div>
+        <div className="flex w-full shrink grow basis-0 flex-col items-start justify-start gap-6">
+          <div className="flex w-full shrink grow basis-0 flex-col items-start justify-start gap-6">
+            <button
+              onClick={addNewLinkHandler}
+              className="font-['Instrument Sans'] inline-flex h-[46px] w-full flex-col items-center justify-center gap-2 rounded-lg border border-[#623bff] px-[27px] py-[11px] text-base font-semibold leading-normal hover:bg-[#EFEBFF]"
+            >
+              + Add new link
+            </button>
+            {links.length < 1 && (
+              <div className="flex shrink grow basis-0 flex-col items-center justify-center gap-3 rounded-xl border bg-neutral-50 p-5">
+                <div className="flex h-[284px] flex-col items-center justify-start gap-6">
+                  <div className="relative h-20 w-[124.77px]">
+                    <Image src="/empty.png" alt="" fill />
+                  </div>
+                  <div className="font-['Instrument Sans'] text-center text-2xl font-bold leading-9 text-[#333333]">
+                    Let’s get you started
+                  </div>
+                  <div className="font-['Instrument Sans'] text-center text-base font-normal leading-normal text-[#727272]">
+                    Use the “Add new link” button to get started. Once you have
+                    more than one link, you can reorder and edit them. We’re
+                    here to help you share your profiles with everyone!
+                  </div>
+                </div>
+              </div>
+            )}
+            {links.map((link, index) => (
+              <LinkCard
+                key={index}
+                link={link}
+                onRemove={removeNewLinkHandler}
+                index={index}
+              />
+            ))}
+          </div>
+        </div>
+        <button
+          disabled={links.length < 1}
+          className="font-['Instrument Sans'] inline-flex h-[46px] w-full flex-col items-center justify-center gap-2 rounded-lg bg-[#623bff] px-[27px] py-[11px] text-base font-semibold leading-normal text-white disabled:opacity-25 md:w-max md:self-end"
+        >
+          Save
+        </button>
+      </div>
+    </div>
+  );
+};
+
+export default DashboardPage;
