@@ -54,7 +54,7 @@ const linksReducer = (state: any, action: any) => {
     };
   }
   if (action.type === "REMOVE_LINK") {
-    const removeLink = state.links.filter((p) => p.id !== action.item);
+    const removeLink = state.links.filter((p:any) => p.id !== action.item);
     return {
       userInfo: state.userInfo,
       links: removeLink,

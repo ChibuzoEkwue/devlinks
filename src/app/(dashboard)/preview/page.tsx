@@ -42,8 +42,8 @@ const PreviewPage = () => {
           </div>
 
           <div className="mb-4 flex h-[300px] flex-col items-start justify-start gap-5 self-stretch">
-            {links.map((link, index) => (
-              <LinkBioCard key={index} platform={link.platform} />
+            {links.map((link:any, index) => (
+              <LinkBioCard key={index} platform={link?.platform} />
             ))}
           </div>
         </div>

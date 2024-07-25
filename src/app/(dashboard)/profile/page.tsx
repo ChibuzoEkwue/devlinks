@@ -10,7 +10,7 @@ const ProfilePage = () => {
   console.log(userInfo);
   
 
-  const update = (e) => {
+  const update = (e:any) => {
     const { name, value } = e.target;
     const payload: { field: string; payload: string } = {
       field: name,
@@ -45,8 +45,8 @@ const ProfilePage = () => {
                   <div className="h-11 self-stretch rounded-lg bg-[#eeeeee]" />
                 </>
               )}
-              {links.map((link, index) => (
-                <LinkBioCard key={index} platform={link.platform} />
+              {links.map((link:any, index) => (
+                <LinkBioCard key={index} platform={link?.platform} />
               ))}
             </div>
           </div>

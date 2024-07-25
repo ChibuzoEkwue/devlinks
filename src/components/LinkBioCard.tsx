@@ -42,7 +42,7 @@ const LinkBioCard = ({ platform }: { platform: string }) => {
     },
   ];
 
-  const result: PlatformType | undefined = platforms.find(
+  const result: PlatformType | any = platforms.find(
     ({ name }) => name === platform,
   );
   return (

@@ -21,7 +21,9 @@ const LinkCard = ({ link, onRemove, index }: LinkCardProps) => {
 
   const { updateLinks, links } = useContext(LinksContext);
   const [open, setOpen] = useState<boolean>(false);
-  const [selectedPlatform, setSelectedPlatform] = useState<PlatformType>({name:link.platform});
+  const [selectedPlatform, setSelectedPlatform] = useState<PlatformType | any>({
+    name: link.platform,
+  });
   const [value, setValue] = useState<string | undefined>(link.link);
   console.log(selectedPlatform);
 
@@ -72,7 +74,7 @@ const LinkCard = ({ link, onRemove, index }: LinkCardProps) => {
     onRemove(link.id);
   };
 
-  const updateLink = (e) => {
+  const updateLink = (e: any) => {
     const { name, value } = e.target;
     setValue(value);
     updateLinks({
@@ -116,7 +118,7 @@ const LinkCard = ({ link, onRemove, index }: LinkCardProps) => {
         </div>
         {open && (
           <div className="absolute left-0 top-[80px] z-10 flex w-full flex-col gap-2 rounded-lg bg-white p-3">
-            {platforms.map((platform, index) => (
+            {platforms.map((platform:any, index) => (
               <span
                 key={index}
                 className="flex h-[30px] cursor-pointer items-center gap-2 border-b-[1px] text-sm text-[#333333]"

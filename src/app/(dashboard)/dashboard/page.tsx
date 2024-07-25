@@ -7,7 +7,7 @@ import LinkBioCard from "@/components/LinkBioCard";
 
 const DashboardPage = () => {
   const { addLink, links, removeLink } = useContext(LinksContext);
-  console.log(links);
+  
   
 
   const addNewLinkHandler = () => {
@@ -44,8 +44,8 @@ const DashboardPage = () => {
                   <div className="h-11 self-stretch rounded-lg bg-[#eeeeee]" />
                 </>
               )}
-              {links.map((link, index) => (
-                <LinkBioCard key={index} platform={link.platform} />
+              {links.map((link:any, index) => (
+                <LinkBioCard key={index} platform={link?.platform} />
               ))}
             </div>
           </div>
